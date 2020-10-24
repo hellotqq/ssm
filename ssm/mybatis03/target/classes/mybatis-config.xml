@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!--    给实体类起一个别名-->
+    <typeAliases>
+<!--        <typeAlias type="cn.hellotqq.pojo.User" alias="User"></typeAlias>-->
+    <package name="cn.hellotqq.pojo"/>
+    </typeAliases>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/ssm?useSSL=true&amp;useUnicode=true&amp;characterEncoding=UTF-8"/>
+                <property name="username" value="root"/>
+                <property name="password" value="111111"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+<!--        方式一：【推荐使用】：-->
+<!--        <mapper resource="cn/hellotqq/dao/UserMapper.xml"/>-->
+<!--       方式二：使用class文件绑定注册
+                这种情况下，接口和它的Mapper配置文件必须在同一个包下，并且需要同名-->
+<!--        <mapper class="cn.hellotqq.dao.UserMapper"></mapper>-->
+<!--       方式三：使用扫描包进行注入绑定
+                   这种情况下注意点和方式二一样
+                -->
+        <package name="cn.hellotqq.dao"/>
+    </mappers>
+</configuration>

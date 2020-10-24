@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hellotqq.dao.UserMapper">
+
+    <resultMap id="UserMap" type="cn.hellotqq.pojo.User">
+        <result column="id" property="id"></result>
+        <result column="name" property="name"></result>
+        <result column="pwd" property="password"></result>
+    </resultMap>
+    <select id="getUserById" parameterType="int" resultMap="UserMap">
+       select * from user where id = #{id}
+    </select>
+    <select id="getUserByLimit" parameterType="map" resultMap="UserMap">
+        select * from user limit #{startIndex},#{pageSize}
+    </select>
+    <select id="getUserByRowRounds" resultMap="UserMap">
+        select * from user
+    </select>
+
+</mapper>
