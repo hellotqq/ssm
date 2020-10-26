@@ -10,6 +10,6 @@ import java.util.List;
  * @Description:
  */
 public interface StudentMapper {
-    Student selById(int id);
+    List<Student> selAll();
 
 }

@@ -3,26 +3,40 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.hellotqq.dao.StudentMapper">
-    <resultMap id="StudentTeacher" type="student">
-        <result property="id" column="id"></result>
+    <resultMap id="StudentMap" type="student">
+       <result property="id" column="id"></result>
         <result property="name" column="name"></result>
-        <association property="teacher" column="tid" javaType="Teacher" select="getTeacher"></association>
+        <result property="tid" column="tid"></result>
+<!--        property 对象在类中的属性，-->
+<!--        select通过哪个查询查询出这个对象的信息-->
+<!--        column把当前表中哪个列中的值作为参数传递给另一个查询-->
+       <association property="teacher" select="cn.hellotqq.dao.TeacherMapper.selectById" column="tid">
+       </association>
     </resultMap>
-    <select id="getStudent" resultMap="StudentTeacher">
+
+
+<!--                以上代码是可以简化为下列的代码的-->
+<!--    <resultMap id="StudentMap" type="student">-->
+<!--        <result property="tid" column="tid"></result>-->
+<!--        <association property="teacher" select="cn.hellotqq.dao.TeacherMapper.selectById" column="tid">-->
+<!--        </association>-->
+<!--    </resultMap>-->
+    <select id="listAll" resultMap="StudentMap">
         select * from student
     </select>
-    <select id="getTeacher" resultType="Teacher">
-        select * from teacher where id = #{id}
-    </select>
-
-    <select id="getStudent2" resultMap="StudentTeacher2">
-        select s.id sid, s.name sname, t.name tname  from student s,teacher t where s.tid=t.id
-    </select>
-    <resultMap id="StudentTeacher2" type="Student">
+<select id="listAllStudent" resultType="student">
+    select  t.id `teacher.id`,t.name `teacher.name`,s.id,s.name,s.tid from student s left join teacher t on t.id = s.tid
+</select>
+    <resultMap id="StudentMap1" type="student">
         <result property="id" column="sid"></result>
         <result property="name" column="sname"></result>
+        <result property="tid" column="tid"></result>
         <association property="teacher" javaType="Teacher">
-            <result property="name" column="tname"></result>
+            <result column="tid" property="id"></result>
+            <result column="tname" property="name"></result>
         </association>
     </resultMap>
+    <select id="selAll1" resultMap="StudentMap1">
+        select s.id sid, s.name sname,t.id tid, t.name tname  from student s left outer join teacher t on s.tid = t.id
+    </select>
 </mapper>

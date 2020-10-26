@@ -12,4 +12,7 @@ import java.util.Map;
  */
 public interface BlogMapper {
     List<Blog>  getBlogList(Map<String,Object> map);
+    List<Blog>  getBlogList1(Map<String,Object> map);
+    List<Blog>  getBlogList2(Map<String,Object> map);
+    int updateBlog( Blog blog);
 }

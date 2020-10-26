@@ -1,3 +1,5 @@
+package cn.hellotqq.test;
+
 import cn.hellotqq.dao.StudentMapper;
 import cn.hellotqq.dao.TeacherMapper;
 import cn.hellotqq.pojo.Student;
@@ -15,18 +17,10 @@ import java.util.List;
  */
 public class MyTest {
     @Test
-    public void test(){
-        SqlSession sqlSession = MybatisUtils.getSqlSession();
-       TeacherMapper mapper = sqlSession.getMapper(TeacherMapper.class);
-        Teacher teacher = mapper.getteacher(1);
-        System.out.println(teacher);
-        sqlSession.close();
-    }
-    @Test
     public void test2(){
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
-        List<Student> studentList = mapper.getStudent();
+        List<Student> studentList = mapper.listAll();
         for ( Student student:studentList) {
             System.out.println(student);
         }
@@ -36,7 +30,31 @@ public class MyTest {
     public void test3(){
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
-        List<Student> studentList = mapper.getStudent2();
+        List<Student> studentList = mapper.listAll();
+        for ( Student student:studentList) {
+            System.out.println(student);
+        }
+        sqlSession.close();
+    }
+
+    /**
+     * 多对一查询
+     */
+    @Test
+    public void test4(){
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
+        List<Student> studentList = mapper.listAllStudent();
+        for ( Student student:studentList) {
+            System.out.println(student);
+        }
+        sqlSession.close();
+    }
+    @Test
+    public void test5(){
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
+        List<Student> studentList = mapper.selAll1();
         for ( Student student:studentList) {
             System.out.println(student);
         }

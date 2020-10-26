@@ -1,3 +1,5 @@
+package cn.hellotqq.test;
+
 import cn.hellotqq.dao.StudentMapper;
 import cn.hellotqq.dao.TeacherMapper;
 import cn.hellotqq.pojo.Student;
@@ -15,29 +17,22 @@ import java.util.List;
  * @Description:
  */
 public class MyTest {
-//    @Test
-//    public void test(){
-//        SqlSession sqlSession = MybatisUtils.getSqlSession();
-//       TeacherMapper mapper = sqlSession.getMapper(TeacherMapper.class);
-//        Teacher teacher = mapper.getteacher(1);
-//        System.out.println(teacher);
-//        sqlSession.close();
-//    }
-        @Test
-    public void test1(){
-        SqlSession sqlSession = MybatisUtils.getSqlSession();
-       TeacherMapper mapper = sqlSession.getMapper(TeacherMapper.class);
-            List<Teacher> teacher1 = mapper.getTeacher();
-            for (Teacher teacher:teacher1) {
-                System.out.println(teacher);
-            }
-        sqlSession.close();
-    }  @Test
-    public void test2(){
+    @Test
+    public void test(){
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         TeacherMapper mapper = sqlSession.getMapper(TeacherMapper.class);
-        List<Teacher> teacher1 = mapper.getTeacher2(1);
-        for (Teacher teacher:teacher1) {
+     List<Teacher> list = mapper.selAll();
+     for (Teacher teacher:list) {
+            System.out.println(teacher);
+        }
+        sqlSession.close();
+    }
+    @Test
+    public void test1(){
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        TeacherMapper mapper = sqlSession.getMapper(TeacherMapper.class);
+        List<Teacher> list = mapper.selAll1();
+        for (Teacher teacher:list) {
             System.out.println(teacher);
         }
         sqlSession.close();

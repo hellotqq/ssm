@@ -10,6 +10,7 @@ import java.util.List;
  * @Description:
  */
 public interface StudentMapper {
-    List<Student> getStudent();
-    List<Student> getStudent2();
+   List<Student> listAll();
+   List<Student> listAllStudent();
+   List<Student> selAll1();
 }

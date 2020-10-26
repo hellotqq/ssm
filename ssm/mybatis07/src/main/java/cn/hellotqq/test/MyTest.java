@@ -17,7 +17,7 @@ import java.util.Map;
  */
 public class MyTest {
     @Test
-    public void getBlogList1(){
+    public void getBlogList(){
         SqlSession sqlSession = MybatisUtils.getSqlSession();
         BlogMapper mapper = sqlSession.getMapper(BlogMapper.class);
        Map<String, Object> map = new HashMap<>();
@@ -27,6 +27,46 @@ public class MyTest {
         for (Blog blog:blogList) {
             System.out.println(blog);
         }
+        sqlSession.close();
+    }
+    @Test
+    public void getBlogList1(){
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        BlogMapper mapper = sqlSession.getMapper(BlogMapper.class);
+        Map<String, Object> map = new HashMap<>();
+        map.put("title","平凡的世界");
+        map.put("author","");
+        List<Blog> blogList = mapper.getBlogList1(map);
+        for (Blog blog:blogList) {
+            System.out.println(blog);
+        }
+        sqlSession.close();
+    }
+    @Test
+    public void getBlogList2(){
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        BlogMapper mapper = sqlSession.getMapper(BlogMapper.class);
+        Map<String, Object> map = new HashMap<>();
+        map.put("title","");
+        map.put("author","");
+        List<Blog> blogList = mapper.getBlogList2(map);
+        for (Blog blog:blogList) {
+            System.out.println(blog);
+        }
+        sqlSession.close();
+    }
+    @Test
+    public void updateBlog(){
+        SqlSession sqlSession = MybatisUtils.getSqlSession();
+        BlogMapper mapper = sqlSession.getMapper(BlogMapper.class);
+        Blog blog = new Blog();
+        blog.setId(4);
+        blog.setTitle("中国武术简章");
+//        blog.setViews(123);
+        int i = mapper.updateBlog(blog);
+        System.out.println(i);
+        sqlSession.commit();
+
         sqlSession.close();
     }
 }

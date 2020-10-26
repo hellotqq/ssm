@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.hellotqq.dao.StudentMapper">
-    <select id="selById" parameterType="int" resultType="student">
-        select * from student where tid = #{id}
+    <select id="selAll" resultType="student">
+     select  t.id `teacher.id`,t.name `teacher.name`,s.id,s.name,s.tid from student s left join teacher t on t.id = s.tid
     </select>
 </mapper>

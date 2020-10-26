@@ -1,6 +1,6 @@
 package cn.hellotqq.dao;
 
-import cn.hellotqq.pojo.Student;
+import cn.hellotqq.pojo.Teacher;
 
 import java.util.List;
 
@@ -9,7 +9,6 @@ import java.util.List;
  * @date ： 2020/10/24 17:02
  * @Description:
  */
-public interface StudentMapper {
-    Student selById(int id);
+public interface TeacherMapper {
 
 }

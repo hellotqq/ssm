@@ -12,9 +12,7 @@ import java.util.List;
  * @Description:
  */
 public interface TeacherMapper {
-//    @Select("select * from teacher where id = #{id}")
-//    Teacher getteacher(@Param("id") int id);
+    List<Teacher> selAll();
+    List<Teacher> selAll1();
 
-    List<Teacher> getTeacher();
-    List<Teacher> getTeacher2(int id);
 }
